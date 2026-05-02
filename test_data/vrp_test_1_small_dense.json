@@ -1,0 +1,45 @@
+{
+  "graph_id": "test_1_small_dense",
+  "grid_size": 50,
+  "num_customers": 5,
+  "num_vehicles": 1,
+  "vehicle_capacity": 100,
+  "depot": {
+    "id": 0,
+    "x": 25,
+    "y": 25,
+    "demand": 0
+  },
+  "customers": [
+    {
+      "id": 1,
+      "x": 20,
+      "y": 22,
+      "demand": 15
+    },
+    {
+      "id": 2,
+      "x": 30,
+      "y": 28,
+      "demand": 20
+    },
+    {
+      "id": 3,
+      "x": 25,
+      "y": 35,
+      "demand": 18
+    },
+    {
+      "id": 4,
+      "x": 15,
+      "y": 30,
+      "demand": 22
+    },
+    {
+      "id": 5,
+      "x": 35,
+      "y": 20,
+      "demand": 25
+    }
+  ]
+}
