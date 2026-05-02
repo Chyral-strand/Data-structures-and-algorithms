@@ -1,0 +1,25 @@
+{
+  "graph_id": "test_2_medium_spread",
+  "grid_size": 100,
+  "num_customers": 10,
+  "num_vehicles": 1,
+  "vehicle_capacity": 150,
+  "depot": {
+    "id": 0,
+    "x": 50,
+    "y": 50,
+    "demand": 0
+  },
+  "customers": [
+    {"id": 1, "x": 10, "y": 10, "demand": 12},
+    {"id": 2, "x": 90, "y": 10, "demand": 15},
+    {"id": 3, "x": 90, "y": 90, "demand": 18},
+    {"id": 4, "x": 10, "y": 90, "demand": 14},
+    {"id": 5, "x": 50, "y": 10, "demand": 16},
+    {"id": 6, "x": 50, "y": 90, "demand": 13},
+    {"id": 7, "x": 10, "y": 50, "demand": 17},
+    {"id": 8, "x": 90, "y": 50, "demand": 11},
+    {"id": 9, "x": 30, "y": 30, "demand": 19},
+    {"id": 10, "x": 70, "y": 70, "demand": 15}
+  ]
+}
