@@ -343,3 +343,57 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def _savings_clarke_wright(self):
+        self._add_log("Savings or Clarke-wright algorithm")
+        self._add_log("Combines routes together, merging the most beneficial pairs first")
+        self._add_log("Step 1: calculate savings for every node pair")
+        start = time.time()
+        savings_list = []
+        for i in range(1, len(self.customers)):
+            for j in range(i + 1, len(self.customers)):
+                potential_saving = (self.distance_matrix[0][i] + self.distance_matrix[0][j] - self.distance_matrix[i][j])
+                savings_list.append((potential_saving, i, j))
+        savings_list.sort(reverse = True)
+        self._add_log(f"Potential pairs: {len(savings_list)} e.g.")
+        for index, (potential_saving, i, j) in enumerate(savings_list[:5]): ## List potential 
+            self._add_log(f"{index+1}. Customer {i} - {j}: {potential_saving:.1f}")
+        routes = [[i] for i in range(1, len(self.customers))]
+
+        self._add_log(f"\nStep 2: merge routes based on savings")
+        pairs_merged = 0
+        for potential_saving, i, j in savings_list:
+            route_i = None
+            route_j = None
+            for route in routes:
+                if i in route:
+                    route_i = route
+                if j in route:
+                    route_j = route
+            if route_i and route_j and route_i != route_j:
+                if route_i[-1] == i and route_j[0] == j:
+                    routes.remove(route_i)
+                    routes.remove(route_j)
+                    routes.append(route_i + route_j)
+                    pairs_merged += 1
+                    self._add_log(f"Merged: {route_i} + {route_j}")
+
+        self.current_route = [0] ## Convert into single route to display
+        total_distance = 0
+        for route in routes:
+            for node in route:
+                self.current_route.append(node)
+                if len(self.current_route) > 1:
+                    total_distance += self.distance_matrix[self.current_route[-2]][node]
+        self.current_route.append(0)
+        total_distance += self.distance_matrix[self.current_route[-2]][0]
+        self.total_distance = total_distance
+        end = time.time()
+        self._add_log(f"Time taken for algorithm: {end-start:.3f} seconds")
+        self._add_info(f"Time taken for last algorithm: {end-start:.3f} seconds")
+        self._add_log(f"Routes merged: {pairs_merged}")
+        self._add_log(f"Route: {' -> '.join(map(str, self.current_route))}")
+        self._add_log(f"Total distance: {self.total_distance:.1f}")
+
+        self._update_graph_vis()
+        self._update_info()
